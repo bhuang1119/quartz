@@ -22,6 +22,7 @@
         <property name="triggers">
             <list>
                 <ref bean="coreTrigger"/>
+                <ref bean="simpleTrigger"/>
             </list>
         </property>
     </bean>
@@ -31,11 +32,28 @@
             <value>${cron.expression}</value>
         </property>
     </bean>
+
+    <bean id="simpleTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="simpleJobDetail"/>
+        <property name="repeatInterval">
+            <value>3000</value>
+        </property>
+    </bean>
+
     <bean id ="coreJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="myJob"/>
         <property name="targetMethod">
             <value>run</value>
         </property>
     </bean>
+
+    <bean id ="simpleJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="simpleJob"/>
+        <property name="targetMethod">
+            <value>run</value>
+        </property>
+    </bean>
+
     <bean id = "myJob" class="MyJob"/>
+    <bean id ="simpleJob" class="SimpleJob"/>
 </beans>
