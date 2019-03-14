@@ -25,3 +25,8 @@
 hs_err_pid*
 
 /.idea/
+.gitignore
+.idea/vcs.xml
+src/test/
+target/classes/SimpleJob.class
+target/generated-sources/
